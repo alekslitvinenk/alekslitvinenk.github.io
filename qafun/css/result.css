@@ -1,0 +1,62 @@
+.inventory {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin-top: 25px;
+  border-collapse: collapse;
+  background-color: white;
+}
+.inventory caption {
+  text-align: right;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+.inventory td, .inventory th {
+  font-size: 1.1em;
+  color: rgba(12, 0, 0, 0.49);
+  border: 1px solid #DDB575;
+  padding: 3px 7px 2px 7px;
+}
+.inventory th {
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  background: rgb(229,76,16);
+  background: -webkit-linear-gradient(rgb(229,76,16), rgb(173,54,8));
+  background: -moz-linear-gradient(rgb(229,76,16), rgb(173,54,8));
+  background: -o-linear-gradient(rgb(229,76,16), rgb(173,54,8));
+  background: linear-gradient(rgb(229,76,16), rgb(173,54,8));
+  color: white;
+}
+.inventory tr:nth-of-type(even){
+  background-color: rgba(255,255,255,.1);
+}
+.inventory tr:nth-of-type(odd){
+  background-color: rgba(229,76,16,.1);
+}
+#price, #rating {
+  width: 15%;
+}
+.bottom_cont {
+  width: 100%;
+}
+.summary {
+  width: 100%;
+  margin-top: 25px;
+}
+.summary .line {
+  float: right;
+  clear: both;
+}
+.summary .key {
+  text-decoration: underline;
+  text-align: right;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 50%;
+  font-size: 1.1em;
+}
+.summary .val {
+  text-align: left;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 50%;
+  font-size: 1.1em;
+}

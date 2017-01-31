@@ -1,0 +1,167 @@
+.subform {
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 15px 5px;
+	padding-bottom: 0;
+	width: 400px;
+	font-size: 0.8em;
+	color: black;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+.wrapper {
+	width: 40%;
+	margin: 5% auto;
+}
+
+.label3 {
+	display: inline-block;
+	padding-top: 2px;
+	vertical-align: top;
+	text-align: right;
+	margin-right: 10px;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: rgba(12, 0, 0, 0.49);
+}
+.switch {
+	display: inline-block;
+	width: 60px;
+	height: 20px;
+	background-color: #ccc9c9;
+	border: 1px solid gray;
+	border-radius: 11px;
+	margin-right: 30px;
+}
+.switch .thumb
+{
+	width: 30px;
+	height: 30px;
+	background-color: #ccc9c9;
+	border-radius: 15px;
+	margin-top: -5px;
+	margin-bottom: 2px;
+	margin-left: -2px;
+}
+
+.counter {
+	text-align: center;
+	color: rgba(12, 0, 0, 0.49);
+	font-weight: bold;
+	font-size: 0.8em;
+	padding: 8px;
+}
+
+.subform .btnbox {
+	width: 210px;
+	margin: 0 auto;
+}
+
+.subform .btn {
+	background: rgb(255, 0, 0);
+	background: -webkit-linear-gradient(rgb(255, 0, 0) 40%, rgb(200, 0, 0));
+	background: -moz-linear-gradient(rgb(255, 0, 0) 40%, rgb(200, 0, 0));
+	background: -o-linear-gradient(rgb(255, 0, 0) 40%, rgb(200, 0, 0));
+	background: linear-gradient(rgb(255, 0, 0) 40%, rgb(200, 0, 0));
+	border-radius: 10px;
+	color: white;
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	display: inline-block;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.subform .yesbtn {
+	background: -webkit-linear-gradient(rgb(0, 255, 0) 40%, rgb(73, 146, 112));
+	background: -moz-linear-gradient(rgb(0, 255, 0) 40%, rgb(73, 146, 112));
+	background: -o-linear-gradient(rgb(0, 255, 0) 40%, rgb(73, 146, 112));
+	background: linear-gradient(rgb(0, 255, 0) 40%, rgb(73, 146, 112));
+}
+
+.subform .btn p {
+	margin-top: 12px;
+	cursor: default;
+}
+
+.hidden {
+	display: none;
+}
+
+.error {
+	border: 3px solid red;
+}
+
+.subform .label {
+	display: inline-block;
+	width: 50%;
+	vertical-align: top;
+	text-align: right;
+	margin-right: 10px;
+	font-weight: bold;
+	color: rgba(12, 0, 0, 0.49);
+}
+
+.subform .label2 {
+	display: inline-block;
+	width: 100%;
+	vertical-align: top;
+	text-align: center;
+	margin-right: 10px;
+	font-weight: bold;
+	color: rgba(12, 0, 0, 0.49);
+}
+
+.subform input[type="submit"], .subform .next {
+	margin-left: 41%;
+	padding: 10px 25px;
+	font-size: 1em;
+	color: white;
+	background: rgb(76, 117, 158);
+	background: -webkit-linear-gradient(rgb(73, 146, 112) 40%, rgb(215, 241, 223)););
+	background: -moz-linear-gradient(rgb(73, 146, 112) 40%, rgb(215, 241, 223)););
+	background: -o-linear-gradient(rgb(73, 146, 112) 40%, rgb(215, 241, 223)););
+	background: linear-gradient(rgb(73, 146, 112) 40%, rgb(215, 241, 223)););
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 4px white;
+}
+
+.subform .next {
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	cursor: default;
+	width: 45px;
+	margin-bottom: 15px;
+}
+
+.subform input[type="submit"]:hover, .next:hover {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.subform select {
+	font-size: 1em;
+}
+
+.subform input[type="text"], .subform textarea {
+	border-radius: 5px;
+	background-color: rgb(255, 255, 255);
+	color: #CCC;
+	font-size: 1em;
+	box-shadow: inset 0 0 10px rgb(255, 255, 255);
+	width: 40%;
+	padding: 5px;
+}
+
+.subform input[type="text"]:focus, .subform textarea:focus {
+	background-color: white;
+	color: black;
+}
