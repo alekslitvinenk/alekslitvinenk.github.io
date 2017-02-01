@@ -12,13 +12,13 @@ $(document).ready(function() {
 
       if(toggle)
       {
-        thumbprops["margin-left"] = "32px";
+        thumbprops["margin-left"] = "3.2rem";
         thumbprops["backgroundColor"] = "#ec078f";
 
         bgprops["backgroundColor"] = "#f13aa7";
       }else
       {
-        thumbprops["margin-left"] = "-2px";
+        thumbprops["margin-left"] = "-.2rem";
         thumbprops["backgroundColor"] = "gray";
 
         bgprops["backgroundColor"] = "white";
