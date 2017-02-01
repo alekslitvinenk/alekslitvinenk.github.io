@@ -3,6 +3,7 @@ body {
 	margin: 0 auto;	
 	background-color: rgb(255,255,255);
 	color: dark-gray;
+	overflow: hidden;
 }
 
 h1 {
