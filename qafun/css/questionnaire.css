@@ -1,16 +1,17 @@
 .wrapper {
 	width: 90%;
-	margin: 5% auto;
+	margin: 15% auto;
 }
 
 .label3 {
-	width: 12.0rem;
+	max-width: 10rem;
+	overflow: hidden;
 	display: inline-block;
 	padding-top: .2rem;
 	vertical-align: top;
 	text-align: left;
 	margin-right: 1rem;
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 	font-family: sans-serif;
 	font-weight: bold;
 	color: rgba(12, 0, 0, 0.49);
