@@ -1,11 +1,22 @@
 $(document).ready(function() {
 
+  var states = {
+    op1: false,
+    op2: false,
+    op3: false,
+    op4: false,
+    op5: false,
+    op6: false
+  };
+
   $(".option").each(function(){
 
     $(this).find(".switch").click(function(){
       
-      var toggle = toggle || false;
+      var toggle = states[$(this).id];
       toggle = !toggle;
+
+      states[$(this).id] = toggle;
 
       var thumbprops = {};
       var bgprops = {};
@@ -19,9 +30,9 @@ $(document).ready(function() {
       }else
       {
         thumbprops["margin-left"] = "-.2rem";
-        thumbprops["backgroundColor"] = "gray";
+        thumbprops["backgroundColor"] = "#ccc9c9";
 
-        bgprops["backgroundColor"] = "white";
+        bgprops["backgroundColor"] = "#ccc9c9";
       }
 
       $(this).animate(bgprops, 150);
