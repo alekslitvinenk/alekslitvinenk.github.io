@@ -9,19 +9,27 @@ $(document).ready(function() {
     op6: false
   };
 
+  var numSwitchers = randomIndex(5) + 1;
+
+  for(var i = 0; i < numSwitchers; i++) {
+    states["op" + i] = true;
+  }
+
+  function randomIndex(n) {
+    return Math.round(Math.random() * n);
+  }
+
   $(".option").each(function(){
 
-    $(this).find(".switch").click(function(){
-      
-      var toggle = states[$(this).id];
-      toggle = !toggle;
+    var optionElement = $(this)[0];
 
-      states[$(this).id] = toggle;
+    switchState(states[optionElement.id]);
 
+    function switchState(state) {
       var thumbprops = {};
       var bgprops = {};
 
-      if(toggle)
+      if(state)
       {
         thumbprops["margin-left"] = "3.2rem";
         thumbprops["backgroundColor"] = "#ec078f";
@@ -35,8 +43,21 @@ $(document).ready(function() {
         bgprops["backgroundColor"] = "#ccc9c9";
       }
 
-      $(this).animate(bgprops, 150);
-      $(this).find(".thumb").animate(thumbprops, 150);
+      $(optionElement).find(".switch").animate(bgprops, 150);
+      $(optionElement).find(".thumb").animate(thumbprops, 150);
+    }
+
+    $(this).find(".switch").click(function(){
+
+      var idd = optionElement.id;
+      
+      var toggle = states[idd];
+      if(!toggle)
+        return;
+
+      states[optionElement.id] = toggle = !toggle;
+
+      switchState(toggle);
     })
   });
 });
