@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  //var url = location.href;
+  //setTimeout(function () {location.href = url}, 1500);
+
   var states = {
     op1: false,
     op2: false,
@@ -9,14 +12,65 @@ $(document).ready(function() {
     op6: false
   };
 
-  var numSwitchers = randomIndex(5) + 1;
+  var availableItems = [];
 
-  for(var i = 0; i < numSwitchers; i++) {
-    states["op" + i] = true;
+  for (var state in states){
+    availableItems.push(state);
   }
+
+  turnOnNElements(3);
+
+  function turnOnNElements(n) {
+    var numSwitchers = randomIndex(n) + 1;
+
+    for(var i = 1; i <= numSwitchers; i++) {
+      var item = randomIndex(availableItems.length - 1);
+      states[availableItems[item]] = true;
+
+      crossState(item);
+    }
+  };
 
   function randomIndex(n) {
     return Math.round(Math.random() * n);
+  }
+
+  function crossState(val) {
+    for (var i = 0; i < availableItems.length; i++){
+      var toCheck = availableItems[i]
+
+      if(toCheck == val) {
+        availableItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+
+  function update() {
+     $(".option").each(function(){
+
+      var optionEl = $(this)[0];
+
+      var thumbprops = {};
+      var bgprops = {};
+
+      if(states[optionEl.id])
+      {
+        thumbprops["margin-left"] = "3.2rem";
+        thumbprops["backgroundColor"] = "#ec078f";
+
+        bgprops["backgroundColor"] = "#f13aa7";
+      }else
+      {
+        thumbprops["margin-left"] = "-.2rem";
+        thumbprops["backgroundColor"] = "#ccc9c9";
+
+        bgprops["backgroundColor"] = "#ccc9c9";
+      }
+
+      $(optionEl).find(".switch").animate(bgprops, 150);
+      $(optionEl).find(".thumb").animate(thumbprops, 150);
+    })
   }
 
   $(".option").each(function(){
@@ -55,9 +109,13 @@ $(document).ready(function() {
       if(!toggle)
         return;
 
-      states[optionElement.id] = toggle = !toggle;
+      states[optionElement.id] = false;
 
-      switchState(toggle);
+      turnOnNElements(1);
+
+      update();
+
+      availableItems.push(idd);
     })
   });
 });
