@@ -24,6 +24,9 @@ $(document).ready(function() {
     var numSwitchers = randomIndex(n) + 1;
 
     for(var i = 1; i <= numSwitchers; i++) {
+      if(availableItems.length == 0)
+        break;
+
       var item = randomIndex(availableItems.length - 1);
       states[availableItems[item]] = true;
 
@@ -109,9 +112,10 @@ $(document).ready(function() {
       if(!toggle)
         return;
 
-      states[optionElement.id] = false;
+      states[idd] = false;
+      crossState(idd);
 
-      turnOnNElements(1);
+      turnOnNElements(3);
 
       update();
 
