@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-  //var url = location.href;
-  //setTimeout(function () {location.href = url}, 1500);
-
   var states = {
     op1: false,
     op2: false,
@@ -19,6 +16,7 @@ $(document).ready(function() {
   }
 
   turnOnNElements(3);
+  update();
 
   function turnOnNElements(n) {
     var numSwitchers = randomIndex(n) + 1;
@@ -28,9 +26,10 @@ $(document).ready(function() {
         break;
 
       var item = randomIndex(availableItems.length - 1);
-      states[availableItems[item]] = true;
+      var state = availableItems[item];
+      states[state] = true;
 
-      crossState(item);
+      crossState(state);
     }
   };
 
@@ -80,30 +79,6 @@ $(document).ready(function() {
 
     var optionElement = $(this)[0];
 
-    switchState(states[optionElement.id]);
-
-    function switchState(state) {
-      var thumbprops = {};
-      var bgprops = {};
-
-      if(state)
-      {
-        thumbprops["margin-left"] = "3.2rem";
-        thumbprops["backgroundColor"] = "#ec078f";
-
-        bgprops["backgroundColor"] = "#f13aa7";
-      }else
-      {
-        thumbprops["margin-left"] = "-.2rem";
-        thumbprops["backgroundColor"] = "#ccc9c9";
-
-        bgprops["backgroundColor"] = "#ccc9c9";
-      }
-
-      $(optionElement).find(".switch").animate(bgprops, 150);
-      $(optionElement).find(".thumb").animate(thumbprops, 150);
-    }
-
     $(this).find(".switch").click(function(){
 
       var idd = optionElement.id;
@@ -113,13 +88,20 @@ $(document).ready(function() {
         return;
 
       states[idd] = false;
-      crossState(idd);
 
-      turnOnNElements(3);
-
-      update();
+      if(availableItems.length < 5)
+      {
+        if(randomIndex(1))
+        {
+          turnOnNElements(2);
+        }
+      }else
+      {
+        turnOnNElements(3);
+      }
 
       availableItems.push(idd);
+      update();
     })
   });
 });
