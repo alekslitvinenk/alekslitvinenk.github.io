@@ -1,0 +1,142 @@
+<!doctype hrml>
+<html>
+	<head>
+		<title>Handle Canvas clicks</title>
+		<style type="text/css">
+			body {
+				background: gray;
+			}
+			.container {
+				width: 800px;
+				height: 600px;
+				background-color: red;
+				margin: auto;
+				position: relative;
+				background: url(images/greed_tile.png);
+			}
+			#canvas, #canvas3d {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script type="text/javascript" src="/scripts/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="/scripts/three.min.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<canvas id="canvas3d" width="800", height="600"></canvas>
+			<canvas id="canvas" width="800", height="600"></canvas>
+		</div>
+	</body>
+	<script type="text/javascript" src="/scripts/dots.js"></script>
+	<script id="fragShader" type="shader-code">
+		uniform vec2 resolution;
+		uniform vec2 points[MAX_POINTS];
+
+		vec4 color = vec4(1.0, 0, 0, 1.0);
+
+		void processDots(vec2 ipt1, vec2 ipt2)
+		{
+			vec2 pos = gl_FragCoord.xy;
+			pos.y = resolution.y - pos.y;
+
+			vec2 pt1 = ipt1;
+			vec2 pt2 = ipt2;
+			vec2 buf;
+
+			if(pt1.x > pt2.x)
+			{
+				buf = pt2;
+				pt2 = pt1;
+				pt1 = buf;
+			}
+
+			float k = (pt1.y - pt2.y) / (pt1.x - pt2.x);
+			float b = pt1.y - pt1.x * k;
+
+			if ((pos.y < (pos.x * k + b)))
+			{
+				color = 1.0 - color;
+			}
+		}
+
+		void main()
+		{
+			for(int i = 0; i < MAX_POINTS; i += 2)
+			{
+				if(points[i] == vec2(0, 0))
+					break;
+
+				processDots(points[i], points[i + 1]);
+			}
+			
+			gl_FragColor = color;
+		}
+
+	</script>
+	<script type="text/javascript">
+
+		const MAX_POINTS = 512;
+
+		var scene;
+		var camera;
+		var renderer;
+
+		function scene_setup () {
+			var canvas = document.getElementById("canvas3d");
+			
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera( 75, 800 / 600, 0.1, 1000 );
+			renderer = new THREE.WebGLRenderer({canvas: canvas});
+		}
+		scene_setup();
+
+		var uniforms = {};
+		uniforms.resolution = {type: 'v2', value: new THREE.Vector2(800 ,600)};
+		uniforms.points = {type: 'v2v', value: []};
+
+		for(var i = 0; i < MAX_POINTS; i++)
+		{
+			uniforms.points.value.push(new THREE.Vector2());
+		}
+
+		var shaderCode = document.getElementById("fragShader").innerHTML;
+		shaderCode = '#define MAX_POINTS '+ MAX_POINTS +'\n' + shaderCode;
+
+		var material = new THREE.ShaderMaterial({uniforms:uniforms, fragmentShader:shaderCode});
+
+		var geometry = new THREE.PlaneGeometry( 10, 10 );
+	    var sprite = new THREE.Mesh( geometry,material );
+	    scene.add( sprite );
+	    sprite.position.z = -1;//Move it back so we can see it
+
+		//Render everything!
+		function render() {
+			renderer.render( scene, camera );
+		}
+		render();
+
+		var points = [];
+
+		onLineAdded(function (pt1, pt2) {
+			if(points.length == MAX_POINTS){
+				return;
+			}
+
+			points.push(new THREE.Vector2(pt1.x, pt1.y), new THREE.Vector2(pt2.x, pt2.y));
+
+			var len = MAX_POINTS - points.length;
+			var emptyArr = [];
+
+			for(var i = 0; i < len; i++){
+				emptyArr.push(new THREE.Vector2());
+			}
+
+			uniforms.points.value = points.concat(emptyArr);
+
+			render();
+		});
+	</script>
+</html>

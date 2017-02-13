@@ -1,0 +1,60 @@
+<!doctype hrml>
+<html>
+	<head>
+		<title>Handle Canvas clicks</title>
+		<style type="text/css">
+			body {
+				background: gray;
+			}
+			.container {
+				width: 800px;
+				height: 600px;
+				background-color: black;
+				margin: auto;
+				position: relative;
+			}
+			#canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script type="text/javascript" src="/scripts/jquery-1.6.2.min.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<img src="/images/greed.png" />
+			<canvas id="canvas" width="800", height="600"></canvas>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+
+		$(canvas).click(function (evt) {
+			var x = evt.pageX - $(this).offset().left;
+			var y = evt.pageY - $(this).offset().top;
+
+			ctx.fillStyle = getRgbaColor();
+			ctx.fillRect(x-50, y-50, 100, 100);
+		});
+
+		function getRgbColor () {
+			var r = Math.ceil(Math.random() * 256);
+			var g = Math.ceil(Math.random() * 256);
+			var b = Math.ceil(Math.random() * 256);
+
+			return "rgb("+r+"," +g+","+b+")";
+		}
+
+		function getRgbaColor () {
+			var r = Math.ceil(Math.random() * 256);
+			var g = Math.ceil(Math.random() * 256);
+			var b = Math.ceil(Math.random() * 256);
+			var a = Math.random();
+
+			return "rgba("+r+"," +g+","+b+","+a+")";
+		}
+	</script>
+</html>
